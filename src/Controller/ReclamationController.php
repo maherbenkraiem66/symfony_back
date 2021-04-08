@@ -41,7 +41,7 @@ class ReclamationController extends AbstractController
 
 //Ajouter une Reclamation
     /**
-     * @Route("/api/Ajout", name="add_Rec" , methods="POST")
+     * @Route("/api/ajoutReclamation", name="add_Rec" , methods="POST")
      * @param Request $request
      * @param ReclamationRepository $repo
      * @return Response
@@ -76,7 +76,7 @@ class ReclamationController extends AbstractController
 
     //GetById
     /**
-     * @Route("/api/ReclamationByID", name="get_Reclamtion_by_id")
+     * @Route("/api/getReclamationByID", name="get_Reclamtion_by_id")
      */
     public function getAllReclamtions(Request $request): Response
     {

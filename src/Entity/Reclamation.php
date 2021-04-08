@@ -31,6 +31,24 @@ class Reclamation
      */
     private $description;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"default"})
+     */
+    private $notes;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"default"})
+     */
+    private $etat;
+
+
+
+
+
+
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="reclamations")
      * @ORM\JoinColumn(nullable=false)

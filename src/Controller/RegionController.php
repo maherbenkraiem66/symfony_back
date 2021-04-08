@@ -28,7 +28,7 @@ class RegionController extends AbstractController
     }
 
     /**
-     * @Route("/api/Region", name="getRegion")
+     * @Route("/api/getAllRegion", name="getRegion")
      * @param SerializerInterface $serializer
      * @return Response
      */
@@ -39,7 +39,7 @@ class RegionController extends AbstractController
     }
 
     /**
-     * @Route("/api/AddRegion", name="add_Region" , methods="POST")
+     * @Route("/api/addRegion", name="add_Region" , methods="POST")
      * @param Request $request
      * @param RegionRepository $repo
      * @return Response
@@ -60,7 +60,7 @@ class RegionController extends AbstractController
 
     //GetById
     /**
-     * @Route("/api/RegionByID", name="get_Region_by_id")
+     * @Route("/api/getRegionByID", name="get_Region_by_id")
      * @param Request $request
      * @return Response
      */

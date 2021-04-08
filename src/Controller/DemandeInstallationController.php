@@ -6,14 +6,16 @@ use App\Entity\DemandeInstallation;
 use App\Entity\Region;
 use App\Entity\Utilisateur;
 use App\Repository\DemandeInstallationRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Security\Core\Security;
 use App\Service\CrudService as CrudService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Routing\Annotation\Route;
-
 
 class DemandeInstallationController extends AbstractController
 {
@@ -27,9 +29,7 @@ class DemandeInstallationController extends AbstractController
 
 
     /**
-     * @Route("demandeInstallation" ,name="get_demande")
-     * @param SerializerInterface $serializer
-     * @return Response
+     * @Route("/api/getAlldemandeInstallation" ,name="get_demande")
      */
     public function getAllDemandes(SerializerInterface $serializer): Response
     {
@@ -39,11 +39,11 @@ class DemandeInstallationController extends AbstractController
 
 
     /**
-     * @Route("/demandeInstallationByID", name="get_demande_by_id")
+     * @Route("/api/getdemandeInstallationByID", name="get_demande_by_id")
      * @param Request $request
      * @return Response
      */
-    public function getAllDemande(Request $request): Response
+    public function getAllDemandebyId(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 
@@ -52,7 +52,7 @@ class DemandeInstallationController extends AbstractController
     }
 
     /**
-     * @Route("/Ajout", name="add_demande" , methods="POST")
+     * @Route("/api/ajoutDamande", name="add_demande" , methods="POST")
      * @param Request $request
      * @param DemandeInstallationRepository $repo
      * @return Response
@@ -77,11 +77,11 @@ class DemandeInstallationController extends AbstractController
         $Demande->setLongitude($longitude);
         $Demande->setLatitude($latitude);
         $Demande->setDate($date);
+
         $crud->setModel(Utilisateur::class);
-
         $Demande->setUtilisateur($crud->get($utilisateur_id));
-        $crud->setModel(Region::class);
 
+        $crud->setModel(Region::class);
         $Demande->setRegion($crud->get($region));
 
 
@@ -95,7 +95,7 @@ class DemandeInstallationController extends AbstractController
     //Without Update
 
     /**
-     * @Route("/Update", name="add_demande" , methods="POST")
+     * @Route("/api/dmandeUpdate", name="add_demande" , methods="POST")
      */
     public function UpdateDemande(Request $request,  DemandeInstallationRepository $repo): Response
     {

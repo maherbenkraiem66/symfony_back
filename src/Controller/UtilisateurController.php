@@ -42,11 +42,12 @@ class UtilisateurController extends AbstractController {
 
     }
             /**
-     * @Route("/api/get_current_user", name="get_current_user", methods="GET")
+     * @Route("/api/getcurrent", name="get_current_user", methods="GET")
      */
     public function getCurrentUser(Security $security): Response
     {
-           return $this->__crudService -> setModel(Utilisateur::class) -> response( Response::HTTP_OK,$security->getUser());
+        $user = $this->get("security.token_storage")->getToken()->getUser();
+           return $this->__crudService -> setModel(Utilisateur::class) -> response( Response::HTTP_OK,$user);
 
 
     }
